@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/stnazaroff/PersonalProject/issues"
   },
-  "homepage": "https://github.com/stnazaroff/PersonalProject#readme"
+  "homepage": "https://github.com/stnazaroff/PersonalProject#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "mysql": "^2.18.1"
+  }
 }
