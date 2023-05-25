@@ -32,10 +32,10 @@ const db = mysql.createConnection({
 
   
   //localhost:3000/updateuser/1
-  app.put("/updateuser/:id", (req, res) => {
+  app.put("/updateuser/:ids", (req, res) => {
     let sqlquery = `Update user 
     set user_name = '${req.body.user_name}', first_name = '${req.body.first_name}', last_name = '${req.body.last_name}', address = '${req.body.address}' 
-    where id = ${req.params.id}`;
+    where id = ${req.params.ids}`;
     db.query(sqlquery, (err) => {
         if (err) {
             throw err;
