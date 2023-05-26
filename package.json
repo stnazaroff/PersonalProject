@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/stnazaroff/PersonalProject#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "mysql": "^2.18.1"

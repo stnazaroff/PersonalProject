@@ -24,4 +24,6 @@ Router parameters are named URL segments that are used to capture values specifi
 `req.params: {"userId": "42"}`
 
 
-YOUR_CLIENT_ID: `993028042225-a7g886c0fnu8lk9uo5ct9kc3803tvesn.apps.googleusercontent.com`
+
+https://blog.logrocket.com/building-simple-login-form-node-js/
+https://stackoverflow.com/questions/29879975/google-sign-in-auth2-customize-scope-without-openid
