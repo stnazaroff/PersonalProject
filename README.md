@@ -27,3 +27,6 @@ Router parameters are named URL segments that are used to capture values specifi
 
 https://blog.logrocket.com/building-simple-login-form-node-js/
 https://stackoverflow.com/questions/29879975/google-sign-in-auth2-customize-scope-without-openid
+
+Build RESTFUL APIs
+https://www.youtube.com/watch?v=eI7Buf4pk6w

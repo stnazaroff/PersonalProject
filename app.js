@@ -1,5 +1,5 @@
 const express = require("express"); //use express (built in module)
-const mysql = require("mysql"); //use mysql (built in module)
+const mysql = require("mysql2/promise"); //use mysql (built in module)
 const dotenv = require("dotenv"); //use dotenv (built in module)
 const app = express(); //creates new express application
 const path = require("path"); //use path (built in module)
@@ -24,15 +24,17 @@ const db = mysql.createPool({
   database: "profile",
 });
 
+db.getConnection((err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Connected to MySQL");
+  }
+});
+
 //routes
 
 //create a new user
-
-//get all users
-
-//get a user
-
-//update a todo
 
 app.post("/createuser", async (req, res) => {
   try {
@@ -41,12 +43,37 @@ app.post("/createuser", async (req, res) => {
       "Insert into user (user_name, first_name, last_name, address) values (?, ?, ?, ?)",
       [user_name, first_name, last_name, address] //data we are sending to the database
     );
+    res.json("User was added successfully"); 
   } catch (err) {
-    console.error(err);
+    console.error(err.mesage);
   }
 });
 
+//get all users
+
+app.get("/allusers", async (req, res) => {
+  try{
+    const sqlquery = await db.query("Select * from user");
+      // res.json(sqlquery);
+      console.log("successfull get all users route");
+      res.json(sqlquery); //send the data to the client side
+  }
+  catch(err){
+    console.error(err.message);
+    console.log("Error in the get all users route");
+  }
+});
+
+//get a user
+
+//update a todo
+
+
 //delete a todo
+
+
+
+
 
 // app.get("/users", (req, res) => {
 //   let sqlquery = "Select * from user";
