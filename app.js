@@ -70,6 +70,25 @@ app.get("/allusers", async (req, res) => {
   }
 });
 
+//login
+app.get("/login/:user_name/:pass", async (req, res) => {
+  try {
+    const { user_name, pass } = req.params;
+    const sqlquery = await db.query(
+      "Select * from user where user_name = ? and pass = ?",
+      [user_name, pass]
+    );
+    if (sqlquery[0].length === 0) {
+      res.json("Invalid username or password");
+    } else {
+      res.json("Valid username and password");
+    }
+  } catch (err) {
+
+    console.error(err.message);
+  }
+});
+
 app.get("/specificuser/:user_name", async (req, res) => {
   try {
     const { user_name } = req.params;
@@ -79,8 +98,7 @@ app.get("/specificuser/:user_name", async (req, res) => {
     const count = check[0][0].num;
     if (count === 1) {
       res.json("Username already exists. Please pick another username");
-    }
-    else{
+    } else {
       res.json("Username is available");
     }
   } catch (err) {
