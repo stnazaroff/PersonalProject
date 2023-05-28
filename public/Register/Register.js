@@ -26,7 +26,7 @@ document
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function (result) {
-              window.location.href = "../Login/Login.html";
+              window.location.href = "../index.html";
               form.reset();
             },
             error: function (error) {
