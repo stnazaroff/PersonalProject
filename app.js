@@ -32,7 +32,7 @@ db.getConnection((err) => {
   }
 });
 
-//routes
+//ROUTES
 
 //create a new user
 
@@ -74,7 +74,7 @@ app.get("/user/:id", async (req, res) => {
   }
 });
 
-//update a todo
+//update a user
 
 app.put("/updateuser/:id", async (req, res) => {
   try {
@@ -90,45 +90,17 @@ app.put("/updateuser/:id", async (req, res) => {
   }
 });
 
-//delete a todo
+//delete a user
 
-// app.get("/users", (req, res) => {
-//   let sqlquery = "Select * from user";
-//   db.query(sqlquery, (err, results) => {
-//     if (err) {
-//       throw err;
-//     }
-//     res.send(results);
-//   });
-// });
-
-// //localhost:3000/updateuser/1
-// app.put("/updateuser/:ids", (req, res) => {
-//   let sqlquery = `Update user
-//   set user_name = '${req.body.user_name}', first_name = '${req.body.first_name}', last_name = '${req.body.last_name}', address = '${req.body.address}'
-//   where id = ${req.params.ids}`;
-//   db.query(sqlquery, (err) => {
-//       if (err) {
-//           throw err;
-//       }
-//       res.send("Employee Updated");
-//       }
-//   );
-// });
-
-// //router for obtaining all user information
-
-// //localhost:3000/deleteuser/1
-// //router for deleting user information
-// app.get("/deleteuser/:ids", (req, res) => {
-// let sqlquery = `Delete From user where id = ${req.params.ids}`;
-// let query = db.query(sqlquery, (err) => {
-//   if (err) {
-//     throw err;
-//   }
-//   res.send("Employee Deleted from table");
-// });
-// });
+app.delete("/deleteuser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const sqlquery = await db.query("Delete from user where id = ?", [id]);
+    res.json("User was deleted");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
