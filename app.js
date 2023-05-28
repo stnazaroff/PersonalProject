@@ -43,7 +43,7 @@ app.post("/createuser", async (req, res) => {
       "Insert into user (user_name, first_name, last_name, address) values (?, ?, ?, ?)",
       [user_name, first_name, last_name, address] //data we are sending to the database
     );
-    res.json("User was added successfully"); 
+    res.json("User was added successfully");
   } catch (err) {
     console.error(err.mesage);
   }
@@ -52,28 +52,45 @@ app.post("/createuser", async (req, res) => {
 //get all users
 
 app.get("/allusers", async (req, res) => {
-  try{
+  try {
     const sqlquery = await db.query("Select * from user");
-      // res.json(sqlquery);
-      console.log("successfull get all users route");
-      res.json(sqlquery); //send the data to the client side
-  }
-  catch(err){
+    // res.json(sqlquery);
+    console.log("successfull get all users route");
+    res.json(sqlquery[0]); //send the data to the client side
+  } catch (err) {
     console.error(err.message);
-    console.log("Error in the get all users route");
   }
 });
 
 //get a user
+//localhost:3000/user/1
+app.get("/user/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const sqlquery = await db.query("Select * from user where id = ?", [id]);
+    res.json(sqlquery[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 //update a todo
 
+app.put("/updateuser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { user_name, first_name, last_name, address } = req.body; //data we are getting from the client side
+    const sqlquery = await db.query(
+      "Update user set user_name = ?, first_name = ?, last_name = ?, address = ? where id = ?",
+      [user_name, first_name, last_name, address, id]
+    );
+    res.json("User was updated");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 //delete a todo
-
-
-
-
 
 // app.get("/users", (req, res) => {
 //   let sqlquery = "Select * from user";
