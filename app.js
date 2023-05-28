@@ -38,7 +38,7 @@ db.getConnection((err) => {
 
 app.post("/createuser", async (req, res) => {
   try {
-    const { user_name, first_name, last_name, address } = req.body; //data we are getting from the client side
+    const { user_name, pass, first_name, last_name, address } = req.body; //data we are getting from the client side
     const check_username =
       "SELECT Count(*) as num FROM user WHERE user_name = ?";
     const check = await db.query(check_username, [user_name]);
@@ -47,8 +47,8 @@ app.post("/createuser", async (req, res) => {
       res.json("Username already exists");
     } else {
       const sqlquery = await db.query(
-        "Insert into user (user_name, first_name, last_name, address) values (?, ?, ?, ?)",
-        [user_name, first_name, last_name, address] //data we are sending to the database
+        "Insert into user (user_name, pass, first_name, last_name, address) values (?, ?, ?, ?, ?)",
+        [user_name, pass, first_name, last_name, address] //data we are sending to the database
       );
       res.json("User was added successfully");
     }
@@ -56,40 +56,6 @@ app.post("/createuser", async (req, res) => {
     console.error(err.mesage);
   }
 });
-
-// app.post("/createuser", async (req, res) => {
-//   try {
-//     const { user_name, first_name, last_name, address } = req.body; //data we are getting from the client side
-//     const sqlquery = await db.query(
-//       "Insert into user (user_name, first_name, last_name, address) values (?, ?, ?, ?)",
-//       [user_name, first_name, last_name, address] //data we are sending to the database
-//     );
-//     res.json("User was added successfully");
-//   } catch (err) {
-//     console.error(err.mesage);
-//   }
-// });
-// app.post("/createuser", async (req, res) => {
-//   try {
-//     const { user_name, first_name, last_name, address } = req.body; //data we are getting from the client side\
-//     const check_username = "SELECT Count(*) as count FROM user WHERE user_name = ?";
-//     const check = await db.query(check_username, [user_name], (err, result) =>{
-//       const count = result[0].count;
-//       if(count > 0){
-//         res.json("Username already exists");
-//       }
-//       else{
-//         const sqlquery = db.query(
-//           "Insert into user (user_name, first_name, last_name, address) values (?, ?, ?, ?)",
-//           [user_name, first_name, last_name, address] //data we are sending to the database
-//         );
-//         res.json("User was added successfully");
-//       }
-//     });
-//   } catch (err) {
-//     console.error(err.mesage);
-//   }
-// });
 
 //get all users
 
@@ -121,16 +87,38 @@ app.get("/user/:id", async (req, res) => {
 app.put("/updateuser/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { user_name, first_name, last_name, address } = req.body; //data we are getting from the client side
-    const sqlquery = await db.query(
-      "Update user set user_name = ?, first_name = ?, last_name = ?, address = ? where id = ?",
-      [user_name, first_name, last_name, address, id]
-    );
-    res.json("User was updated");
+    const { user_name, pass, first_name, last_name, address } = req.body;
+    const check_username =
+      "SELECT Count(*) as num FROM user WHERE user_name = ?";
+    const check = await db.query(check_username, [user_name]);
+    const count = check[0][0].num;
+    if (count === 1) {
+      res.json("Username already exists. Please pick another username");
+    } else {
+      const sqlquery = await db.query(
+        "Update user set user_name = ?, pass = ?, first_name = ?, last_name = ?, address = ? where id = ?",
+        [user_name, pass, first_name, last_name, address, id]
+      );
+      res.json("User was updated");
+    }
   } catch (err) {
     console.error(err.message);
   }
 });
+
+// app.put("/updateuser/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { user_name, pass, first_name, last_name, address } = req.body; //data we are getting from the client side
+//     const sqlquery = await db.query(
+//       "Update user set user_name = ?, pass = ?, first_name = ?, last_name = ?, address = ? where id = ?",
+//       [user_name, pass, first_name, last_name, address, id]
+//     );
+//     res.json("User was updated");
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// });
 
 //delete a user
 
