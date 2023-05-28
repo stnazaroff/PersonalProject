@@ -70,8 +70,27 @@ app.get("/allusers", async (req, res) => {
   }
 });
 
+app.get("/specificuser/:user_name", async (req, res) => {
+  try {
+    const { user_name } = req.params;
+    const check_username =
+      "SELECT Count(*) as num FROM user WHERE user_name = ?";
+    const check = await db.query(check_username, [user_name]);
+    const count = check[0][0].num;
+    if (count === 1) {
+      res.json("Username already exists. Please pick another username");
+    }
+    else{
+      res.json("Username is available");
+    }
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 //get a user
 //localhost:3000/user/1
+
 app.get("/user/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -105,20 +124,6 @@ app.put("/updateuser/:id", async (req, res) => {
     console.error(err.message);
   }
 });
-
-// app.put("/updateuser/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { user_name, pass, first_name, last_name, address } = req.body; //data we are getting from the client side
-//     const sqlquery = await db.query(
-//       "Update user set user_name = ?, pass = ?, first_name = ?, last_name = ?, address = ? where id = ?",
-//       [user_name, pass, first_name, last_name, address, id]
-//     );
-//     res.json("User was updated");
-//   } catch (err) {
-//     console.error(err.message);
-//   }
-// });
 
 //delete a user
 
