@@ -40,38 +40,3 @@ document
       },
     });
   });
-
-//   fetch(`/specificuser/${data.user_name}`)
-//     .then((response) => response.json())
-//     .then((result) => {
-//         console.log(result);
-//       if (result.exists) {
-//         // Username already exists, display an error message or take appropriate action
-//         form.reset();
-//       } else {
-//         // Username does not exist, proceed with registration
-//         fetch("/createuser", {
-//           method: "POST",
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//           body: JSON.stringify(data),
-//         })
-//           .then((response) => response.json())
-//           .then((result) => {
-//             // Handle the response data
-//             window.location.href = "../Login/Login.html"; // Redirect to the login page
-//             // Clear the form
-//             form.reset();
-//           })
-//           .catch((error) => {
-//             // Handle any errors
-//             console.error("Error:", error);
-//           });
-//       }
-//     })
-//     .catch((error) => {
-//       // Handle any errors
-//       console.error("Error:", error);
-//     });
-// });
