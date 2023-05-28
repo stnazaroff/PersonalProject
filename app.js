@@ -39,15 +39,57 @@ db.getConnection((err) => {
 app.post("/createuser", async (req, res) => {
   try {
     const { user_name, first_name, last_name, address } = req.body; //data we are getting from the client side
-    const sqlquery = await db.query(
-      "Insert into user (user_name, first_name, last_name, address) values (?, ?, ?, ?)",
-      [user_name, first_name, last_name, address] //data we are sending to the database
-    );
-    res.json("User was added successfully");
+    const check_username =
+      "SELECT Count(*) as num FROM user WHERE user_name = ?";
+    const check = await db.query(check_username, [user_name]);
+    const count = check[0][0].num;
+    if (count > 0) {
+      res.json("Username already exists");
+    } else {
+      const sqlquery = await db.query(
+        "Insert into user (user_name, first_name, last_name, address) values (?, ?, ?, ?)",
+        [user_name, first_name, last_name, address] //data we are sending to the database
+      );
+      res.json("User was added successfully");
+    }
   } catch (err) {
     console.error(err.mesage);
   }
 });
+
+// app.post("/createuser", async (req, res) => {
+//   try {
+//     const { user_name, first_name, last_name, address } = req.body; //data we are getting from the client side
+//     const sqlquery = await db.query(
+//       "Insert into user (user_name, first_name, last_name, address) values (?, ?, ?, ?)",
+//       [user_name, first_name, last_name, address] //data we are sending to the database
+//     );
+//     res.json("User was added successfully");
+//   } catch (err) {
+//     console.error(err.mesage);
+//   }
+// });
+// app.post("/createuser", async (req, res) => {
+//   try {
+//     const { user_name, first_name, last_name, address } = req.body; //data we are getting from the client side\
+//     const check_username = "SELECT Count(*) as count FROM user WHERE user_name = ?";
+//     const check = await db.query(check_username, [user_name], (err, result) =>{
+//       const count = result[0].count;
+//       if(count > 0){
+//         res.json("Username already exists");
+//       }
+//       else{
+//         const sqlquery = db.query(
+//           "Insert into user (user_name, first_name, last_name, address) values (?, ?, ?, ?)",
+//           [user_name, first_name, last_name, address] //data we are sending to the database
+//         );
+//         res.json("User was added successfully");
+//       }
+//     });
+//   } catch (err) {
+//     console.error(err.mesage);
+//   }
+// });
 
 //get all users
 
