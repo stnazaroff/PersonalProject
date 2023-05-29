@@ -1,6 +1,4 @@
-document
-  .getElementById("LoginForm")
-  .addEventListener("submit", function (event) {
+document.getElementById("LoginForm").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent form submission
 
     const form = event.target;
