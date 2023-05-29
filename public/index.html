@@ -5,14 +5,20 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h1>Login Page</h1>
     <div id="container">
+      <h1>Login Page</h1>
       <form id="LoginForm">
-        <label for="user_name">Please enter in a username</label><br />
-        <input type="text" id="user_name" name="user_name" required /><br />
-        <label for="pass">Please enter in a password</label><br />
-        <input type="text" id="pass" name="pass" required /><br />
-        <button type="submit">Login</button>
+        <div id="text_space">
+          <input type="text" id="user_name" name="user_name" required />
+          <span></span>
+          <label for="user_name">Username</label>
+        </div>
+        <div id="text_space">
+          <input type="text" id="pass" name="pass" required />
+          <span></span>
+          <label for="pass">Password</label>
+        </div>
+        <button id = "btn" type="submit">Login</button>
         <button id="RegisterPage">Register</button>
       </form>
     </div>
