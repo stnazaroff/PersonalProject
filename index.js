@@ -84,7 +84,6 @@ app.get("/login/:user_name/:pass", async (req, res) => {
       res.json("Valid username and password");
     }
   } catch (err) {
-
     console.error(err.message);
   }
 });
@@ -100,6 +99,25 @@ app.get("/specificuser/:user_name", async (req, res) => {
       res.json("Username already exists. Please pick another username");
     } else {
       res.json("Username is available");
+    }
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.get("/getuser/:user_name", async (req, res) => {
+  try {
+    const { user_name } = req.params;
+    const check_username =
+      "SELECT Count(*) as num FROM user WHERE user_name = ?";
+    const check = await db.query(check_username, [user_name]);
+    const count = check[0][0].num;
+    if (count === 1) {
+      const query = "SELECT * FROM user WHERE user_name = ?";
+      const checker = await db.query(query, [user_name]);
+      res.json(checker[0]);
+    } else {
+      res.json("Username does not exist");
     }
   } catch (err) {
     console.error(err.message);

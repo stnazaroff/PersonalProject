@@ -14,7 +14,9 @@ document.getElementById("LoginForm").addEventListener("submit", function (event)
             alert("Invalid username or password");
             form.reset();
             event.preventDefault();
-        } else {
+        }
+        else {
+          sessionStorage.setItem("user_name", data.user_name);  // Store the username in local storage
             window.location.href = "../Home/Home.html";
             form.reset();
         }
