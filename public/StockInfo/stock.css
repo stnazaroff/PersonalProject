@@ -9,3 +9,23 @@
   border: 1px solid #ccc;
   padding: 10px;
 }
+
+.definition {
+    position: relative;
+  }
+  
+  .definition:hover::before {
+    content: attr(data-definition);
+    position: relative;
+    background-color: #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: normal; /* Allow words to wrap */
+    word-wrap: break-word; /* Break and wrap words within the box */
+    font-size: 14px;
+    max-width: 200px; /* Adjust the value as needed */
+  }
+

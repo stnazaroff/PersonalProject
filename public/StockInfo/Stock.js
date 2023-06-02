@@ -19,7 +19,7 @@ $(document).ready(function () {
             <p>Stock Price: $${result.price}</p>
             <p>52-Week High: $${result.high}</p>
             <p>52-Week Low: $${result.low}</p>
-            <p>Market Cap: $${result.marketCap}</p>
+            <p class="definition" data-definition="Definition of Market Cap: The market capitalization (market cap) of a company is the total value of its outstanding shares of stock. It is calculated by multiplying the current stock price by the total number of shares outstanding.">Market Cap: $${result.marketCap}</p>
             <p>P/E Ratio: ${result.peRatio}</p>
             <p>EPS: $${result.eps}</p>
             <p>PEG Ratio: ${result.pegRatio}</p>
