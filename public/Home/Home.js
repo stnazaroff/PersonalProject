@@ -1,4 +1,4 @@
-const user_name = sessionStorage.getItem("user_name");
+const user_name = sessionStorage    .getItem("user_name");
 const welcomeMessage = document.getElementById("welcome_message");
 welcomeMessage.innerHTML = "Welcome, " + user_name + "!";
 

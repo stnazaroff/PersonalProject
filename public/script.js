@@ -1,4 +1,6 @@
-document.getElementById("LoginForm").addEventListener("submit", function (event) {
+document
+  .getElementById("LoginForm")
+  .addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent form submission
 
     const form = event.target;
@@ -11,14 +13,13 @@ document.getElementById("LoginForm").addEventListener("submit", function (event)
       type: "GET",
       success: function (result) {
         if (result === "Invalid username or password") {
-            alert("Invalid username or password");
-            form.reset();
-            event.preventDefault();
-        }
-        else {
-          sessionStorage.setItem("user_name", data.user_name);  // Store the username in local storage
-            window.location.href = "../Home/Home.html";
-            form.reset();
+          alert("Invalid username or password");
+          form.reset();
+          event.preventDefault();
+        } else {
+          sessionStorage.setItem("user_name", data.user_name); // Store the username in local storage
+          window.location.href = "../StockInfo/stock.html";
+          form.reset();
         }
       },
       error: function (error) {

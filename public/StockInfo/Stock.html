@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Information</title>
+    <link rel="stylesheet" href="stock.css" />
+</head>
+<body>
+  <h1>Stock Information</h1>
+  
+  <div>
+    <label for="stock1">Stock 1 Symbol:</label>
+    <input type="text" id="stock1" name="stock1">
+  </div>
+  
+  <div>
+    <label for="stock2">Stock 2 Symbol:</label>
+    <input type="text" id="stock2" name="stock2">
+  </div>
+
+  <button id="fetchBtn">Fetch Stock Information</button>
+
+  <div class="stock-container">
+    <div id="stock-info-1" class="stock-info"></div>
+    <div id="stock-info-2" class="stock-info"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="Stock.js"></script>
+</body>
+</html>

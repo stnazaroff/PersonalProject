@@ -5,6 +5,7 @@ const app = express(); //creates new express application
 const path = require("path"); //use path (built in module)
 const publicdirectory = path.join(__dirname, "./public"); //specifiy the static assets that will be used
 const cors = require("cors"); //use cors (built in module)
+var yahooFinance = require("yahoo-finance");
 
 dotenv.config({ path: "./.env" }); //dotenv is used to hide sensitive information such as passwords and usernames
 
@@ -33,6 +34,41 @@ db.getConnection((err) => {
 });
 
 //ROUTES
+
+app.get("/stockinfo/:symbol", async (req, res) => {
+  try {
+    const { symbol } = req.params;
+    yahooFinance.quote(
+      {
+        symbol: symbol,
+        modules: ["price", "summaryDetail", "defaultKeyStatistics"],
+      },
+      function (err, quotes) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        const stockInfo = {
+          price: quotes.price.regularMarketPrice,
+          high: quotes.summaryDetail.fiftyTwoWeekHigh,
+          low: quotes.summaryDetail.fiftyTwoWeekLow,
+          marketCap: quotes.summaryDetail.marketCap,
+          peRatio: quotes.summaryDetail.trailingPE,
+          eps: quotes.defaultKeyStatistics.forwardEps,
+          pegRatio: quotes.defaultKeyStatistics.pegRatio,
+          dividendYield: quotes.summaryDetail.dividendYield,
+          pricetoBook: quotes.defaultKeyStatistics.priceToBook,
+          
+        };
+
+        res.json(stockInfo);
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 //create a new user
 
@@ -176,3 +212,5 @@ app.delete("/deleteuser/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
+
+module.exports = yahooFinance;

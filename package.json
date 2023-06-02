@@ -23,6 +23,7 @@
     "dotenv": "^16.0.3",
     "googleapis": "^118.0.0",
     "mysql": "^2.18.1",
-    "mysql2": "^3.3.3"
+    "mysql2": "^3.3.3",
+    "yahoo-finance": "^0.3.8"
   }
 }

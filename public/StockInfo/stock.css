@@ -1,0 +1,11 @@
+.stock-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.stock-info {
+  width: 20%;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
