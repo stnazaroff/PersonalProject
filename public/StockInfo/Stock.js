@@ -16,18 +16,16 @@ $(document).ready(function () {
         var stockInfoDiv = document.getElementById(divId);
         stockInfoDiv.innerHTML = `
             <h2>${stock}</h2>
-            <p>Stock Price: $${result.price}</p>
-            <p>52-Week High: $${result.high}</p>
-            <p>52-Week Low: $${result.low}</p>
-            <p class="definition" data-definition="Definition of Market Cap: The market capitalization (market cap) of a company is the total value of its outstanding shares of stock. It is calculated by multiplying the current stock price by the total number of shares outstanding.">Market Cap: $${result.marketCap}</p>
-            <p>P/E Ratio: ${result.peRatio}</p>
+            <p class="definition" data-definition="Cost to purchase one share of the company's stock">Stock Price: $${result.price}</p>
+            <p class="definition" data-definition="Maxiumum price of stock within 1-year trading period">52-Week High: $${result.high}</p>
+            <p class="definition" data-definition="Minimum price of stock within 1-year trading period">52-Week Low: $${result.low}</p>
+            <p class="definition" data-definition="The total market value. How big and durable is the company?">Market Cap: $${result.marketCap}</p>
+            <p class="definition" data-definition="Price per share/annual earnings per share. How big/small is the price compared to the company's earnings or profits?">P/E Ratio: ${result.peRatio}</p>
             <p>EPS: $${result.eps}</p>
-            <p>PEG Ratio: ${result.pegRatio}</p>
-            <p>Dividend Yield: ${result.dividendYield}</p>
-            <p>Price to Book: ${result.pricetoBook}</p>
-
-
-          `;
+            <p class = "definition" data-definition="price to earnings to growth raio. Used to determine the stock's value while also factoring in the company's expected earning's growth.">PEG Ratio: ${result.pegRatio}</p>
+            <p class = "definition" data-definition="how much a company pays out in dividends each year compared to stock price. Annual dividends per share/current share price">Dividend Yield: ${result.dividendYield}</p>
+            <p class="definition" data-definition="Stock price/book value per share. Market valuation of a company's (usually higher) vs. its &quot;book value&quot;. Under 1 is &quot;good&quot;; Over 1 is &quot;overvalued&quot;">Price to Book: ${result.pricetoBook}</p>
+            `;
       },
       error: function (error) {
         console.error(error);

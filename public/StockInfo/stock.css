@@ -1,3 +1,7 @@
+.container {
+  position: relative;
+}
+
 .stock-container {
   display: flex;
   justify-content: center;
@@ -11,21 +15,39 @@
 }
 
 .definition {
-    position: relative;
-  }
-  
-  .definition:hover::before {
-    content: attr(data-definition);
-    position: relative;
-    background-color: #ccc;
-    padding: 5px;
-    border-radius: 5px;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: normal; /* Allow words to wrap */
-    word-wrap: break-word; /* Break and wrap words within the box */
-    font-size: 14px;
-    max-width: 200px; /* Adjust the value as needed */
-  }
+  position: relative;
+  max-width: 600px;
+}
 
+.definition:hover::before {
+  content: attr(data-definition);
+  position: absolute;
+  background-color: #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: normal;
+  word-wrap: break-word;
+  font-size: 14px;
+  width: max-content;
+  max-width: 400px;
+}
+
+.stock-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px; /* Add padding-bottom to increase space */
+}
+
+.stock-input label {
+  margin-right: 10px;
+}
+
+#fetchBtn {
+  position: absolute;
+  top: 10px;
+  right: 300px;
+}
