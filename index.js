@@ -5,7 +5,7 @@ const app = express(); //creates new express application
 const path = require("path"); //use path (built in module)
 const publicdirectory = path.join(__dirname, "./public"); //specifiy the static assets that will be used
 const cors = require("cors"); //use cors (built in module)
-var yahooFinance = require("yahoo-finance");
+const yahooFinance = require("yahoo-finance");
 
 dotenv.config({ path: "./.env" }); //dotenv is used to hide sensitive information such as passwords and usernames
 
@@ -50,6 +50,7 @@ app.get("/stockinfo/:symbol", async (req, res) => {
         }
 
         const stockInfo = {
+          longName: quotes.price.longName,
           price: quotes.price.regularMarketPrice,
           high: quotes.summaryDetail.fiftyTwoWeekHigh,
           low: quotes.summaryDetail.fiftyTwoWeekLow,
@@ -212,5 +213,3 @@ app.delete("/deleteuser/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
-
-module.exports = yahooFinance;

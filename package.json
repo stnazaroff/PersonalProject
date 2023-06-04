@@ -24,6 +24,7 @@
     "googleapis": "^118.0.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.3.3",
-    "yahoo-finance": "^0.3.8"
+    "yahoo-finance": "^0.3.8",
+    "yahoo-finance2": "^2.4.1"
   }
 }

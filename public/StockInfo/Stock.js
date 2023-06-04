@@ -16,6 +16,7 @@ $(document).ready(function () {
         var stockInfoDiv = document.getElementById(divId);
         stockInfoDiv.innerHTML = `
             <h2>${stock}</h2>
+            <p>Company Name: ${result.longName}</p>
             <p class="definition" data-definition="Cost to purchase one share of the company's stock">Stock Price: $${result.price}</p>
             <p class="definition" data-definition="Maxiumum price of stock within 1-year trading period">52-Week High: $${result.high}</p>
             <p class="definition" data-definition="Minimum price of stock within 1-year trading period">52-Week Low: $${result.low}</p>
