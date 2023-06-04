@@ -3,8 +3,16 @@ $(document).ready(function () {
     const stock1 = $("#stock1").val();
     const stock2 = $("#stock2").val();
 
-    fetchStockInfo(stock1, "stock-info-1");
-    fetchStockInfo(stock2, "stock-info-2");
+    if (stock1 && stock2 === "") {
+      fetchStockInfo(stock1, "stock-info-1");
+      clearStockInfo("stock-info-2");
+    } else if (stock1 === "" && stock2) {
+      fetchStockInfo(stock2, "stock-info-2");
+      clearStockInfo("stock-info-1");
+    } else if (stock1 && stock2) {
+      fetchStockInfo(stock1, "stock-info-1");
+      fetchStockInfo(stock2, "stock-info-2");
+    }
   });
 
   function fetchStockInfo(stock, divId) {
@@ -32,5 +40,10 @@ $(document).ready(function () {
         console.error(error);
       },
     });
+  }
+
+  function clearStockInfo(divId) {
+    var stockInfoDiv = document.getElementById(divId);
+    stockInfoDiv.innerHTML = "";
   }
 });
